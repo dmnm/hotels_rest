@@ -2,10 +2,23 @@ package org.example.rest.service;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.example.rest.dao.RoomDao;
 import org.example.rest.entity.Room;
 
-public interface RoomService {
-    List<Room> getAll();
+@Named
+public class RoomService {
+    @Inject
+    private RoomDao roomDao;
 
-    Room findById(Long id);
+    public List<Room> getAll() {
+        return roomDao.getAll();
+    }
+
+    public Room findById(final Long id) {
+        return roomDao.findById(id);
+    }
+
 }

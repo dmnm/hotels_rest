@@ -46,7 +46,7 @@ public abstract class GenericDao<T extends HasId> {
 
     private Long generateId() {
         long id;
-        while (exist(id = random.nextLong())) {}
+        while (exist(id = random.nextInt(Integer.MAX_VALUE))) {}
         return id;
     }
 }

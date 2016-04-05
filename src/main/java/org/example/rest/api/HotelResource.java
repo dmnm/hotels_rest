@@ -12,20 +12,20 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.example.rest.entity.Room;
-import org.example.rest.service.RoomService;
+import org.example.rest.entity.Hotel;
+import org.example.rest.service.HotelService;
 
 @Named
-@Path("/rooms")
+@Path("/hotels")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class RoomResource {
+public class HotelResource {
 
     @Inject
-    private RoomService delegate;
+    private HotelService delegate;
 
     @GET
-    public List<Room> getAll() {
+    public List<Hotel> getAll() {
         return delegate.getAll();
     }
 

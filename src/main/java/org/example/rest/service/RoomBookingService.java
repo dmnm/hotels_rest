@@ -1,12 +1,19 @@
 package org.example.rest.service;
 
+import javax.inject.Named;
+
 import org.example.rest.dto.BookingRequest;
 import org.example.rest.dto.BookingResponse;
 import org.example.rest.dto.BookingSearchRequest;
 import org.example.rest.dto.BookingSearchResponse;
 
-public interface RoomBookingService {
-    BookingResponse bookingRoom(BookingRequest request);
+@Named
+public class RoomBookingService {
+    public BookingResponse bookingRoom(final BookingRequest request) {
+        return null;
+    }
 
-    BookingSearchResponse searchRooms(BookingSearchRequest request);
+    public BookingSearchResponse searchRooms(final BookingSearchRequest request) {
+        return null;
+    }
 }
