@@ -1,6 +1,7 @@
 package org.example.rest.config;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -12,10 +13,14 @@ import org.example.rest.entity.HotelType;
 import org.example.rest.entity.Room;
 import org.example.rest.entity.RoomType;
 import org.example.rest.entity.RoomView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Config {
+    private static final Logger log = LoggerFactory.getLogger(Config.class);
+
     @Inject
     private RoomDao roomDao;
     @Inject
@@ -56,16 +61,17 @@ public class Config {
         hotelDao.save(fourStars);
         hotelDao.save(fiveStars);
 
-        for (final Hotel hotel : hotelDao.getAll()) {
+        hotelDao.getAll().forEach(hotel -> {
             final int roomNumber = random.nextBoolean() ? 10 : 15;
-            for (int i = 1; i <= roomNumber; i++) {
+            IntStream.rangeClosed(1, roomNumber).forEach(i -> {
                 final Room r = createRoom();
                 r.roomNumber = i;
                 r.hotel = hotel;
                 hotel.rooms.add(r);
-                System.out.println(r);
-            }
-        }
+
+                log.info("\r\n" + r);
+            });
+        });
     }
 
     private Room createRoom() {

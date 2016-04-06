@@ -16,7 +16,7 @@ import org.example.rest.entity.Room;
 import org.example.rest.service.RoomService;
 
 @Named
-@Path("/rooms")
+@Path("rooms")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RoomResource {
@@ -30,7 +30,7 @@ public class RoomResource {
     }
 
     @GET
-    @Path("/{id}")
+    @Path("{id}")
     public Response findById(@PathParam("id") final Long id) {
         return Response.ok().entity(delegate.findById(id)).build();
     }

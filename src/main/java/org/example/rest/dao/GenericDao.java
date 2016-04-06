@@ -20,11 +20,9 @@ public abstract class GenericDao<T extends HasId> {
         Long id = entity.getId();
         if (id == null) {
             id = generateId();
-            repo.put(id, entity);
             entity.setId(id);
-        } else {
-            repo.put(id, entity);
         }
+        repo.put(id, entity);
         return entity;
     }
 

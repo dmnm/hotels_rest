@@ -1,8 +1,11 @@
 package org.example.rest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Room extends Entity {
     private static final long serialVersionUID = 4959369356203006858L;
 
+    @JsonIgnore
     public Hotel hotel;
     public int roomNumber;
     public RoomType type;

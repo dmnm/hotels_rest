@@ -11,19 +11,21 @@ import javax.ws.rs.ext.Provider;
 import org.example.rest.api.HotelResource;
 import org.example.rest.api.RoomResource;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 @Named
-@ApplicationPath("/api")
+@ApplicationPath("api")
 public class JerseyConfig extends ResourceConfig {
     @PostConstruct
     public void registerResources() {
         register(HotelResource.class);
         register(RoomResource.class);
         register(JacksonContextResolver.class);
+        register(RolesAllowedDynamicFeature.class);
     }
 
     @Provider
