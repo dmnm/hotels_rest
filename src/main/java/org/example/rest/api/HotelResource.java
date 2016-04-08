@@ -41,7 +41,6 @@ public class HotelResource {
 
     @GET
     @Path("{id}")
-    @RolesAllowed("admin")
     public Response findById(@PathParam("id") final Long id) {
         return Response.ok().entity(delegate.findById(id)).build();
     }

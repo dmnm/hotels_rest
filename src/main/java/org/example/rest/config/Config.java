@@ -64,12 +64,16 @@ public class Config {
         hotelDao.getAll().forEach(hotel -> {
             final int roomNumber = random.nextBoolean() ? 10 : 15;
             IntStream.rangeClosed(1, roomNumber).forEach(i -> {
-                final Room r = createRoom();
-                r.roomNumber = i;
-                r.hotel = hotel;
-                hotel.rooms.add(r);
+                final Room room = createRoom();
+                room.roomNumber = i;
+                room.hotel = hotel;
+                hotel.rooms.add(room);
 
-                log.info("\r\n" + r);
+                if (hotel.type == HotelType.SANATORIUM) {
+                    room.hasAirConditioning = false;
+                }
+
+                log.info("\r\n" + room);
             });
         });
     }
