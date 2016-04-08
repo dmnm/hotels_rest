@@ -10,6 +10,7 @@ import javax.ws.rs.ext.Provider;
 
 import org.example.rest.api.HotelResource;
 import org.example.rest.api.RoomResource;
+import org.example.rest.web.CorsFilter;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
@@ -26,6 +27,7 @@ public class JerseyConfig extends ResourceConfig {
         register(RoomResource.class);
         register(JacksonContextResolver.class);
         register(RolesAllowedDynamicFeature.class);
+        register(CorsFilter.class);
     }
 
     @Provider
