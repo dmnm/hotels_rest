@@ -1,0 +1,21 @@
+div {
+	border: 1px solid lightgray;
+	border-radius: 6px;
+	margin: 0.5em;
+	padding: 0.5em;
+}
+
+#nav {
+	float: left;
+	width: 25%;
+}
+
+#content {
+	display: inline-block;
+	width: 67%;
+}
+
+#debug {
+	border: 1px solid saddlebrown;
+	color: red;
+}
