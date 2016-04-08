@@ -21,8 +21,25 @@ public class HotelService {
         return hotelDao.getAll();
     }
 
+    public List<Hotel> getAll(final Integer offset, final Integer limit) {
+        return hotelDao.getAll(offset, limit);
+    }
+
     public Hotel findById(final Long id) {
         return hotelDao.findById(id);
+    }
+
+    public Long add(final Hotel hotel) {
+        hotel.setId(null);
+        return save(hotel).getId();
+    }
+
+    public Long update(final Hotel hotel) {
+        if (delete(hotel.getId())) {
+            return save(hotel).getId();
+        } else {
+            return null;
+        }
     }
 
     public boolean delete(final Long id) {
@@ -35,4 +52,11 @@ public class HotelService {
         return hotelDao.delete(id);
     }
 
+    private Hotel save(final Hotel hotel) {
+        hotel.rooms.forEach(room -> {
+            room.hotel = hotel;
+            roomDao.save(room);
+        });
+        return hotelDao.save(hotel);
+    }
 }

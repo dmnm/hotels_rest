@@ -38,6 +38,18 @@ public abstract class GenericDao<T extends HasId> {
         return new ArrayList<>(repo.values());
     }
 
+    public List<T> getAll(final Integer offset, final Integer limit) {
+        if (limit != null) {
+            final int fromIndex = offset == null ? 0 : offset;
+            try {
+                return new ArrayList<>(repo.values()).subList(fromIndex, fromIndex + limit);
+            } catch (final IndexOutOfBoundsException e) {
+                return new ArrayList<>();
+            }
+        }
+        return getAll();
+    }
+
     public T findById(final Long id) {
         return repo.get(id);
     }
