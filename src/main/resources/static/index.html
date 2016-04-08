@@ -2,18 +2,54 @@
 <html>
 <head>
 <title>Hotels Rest API</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://localhost:8080/hotels.js"></script>
+<link rel="stylesheet" href="style.css" />
+
 </head>
 
 <body>
-	<div>
-		<p class="id">ID</p>
-		<p class="content">Content</p>
+	<div id="header">
+		<div id="errors"></div>
 	</div>
+
+	<div id="main">
+		<div id="nav">
+			<a id="home" href="#">Home</a>
+		</div>
+
+		<div id="content">
+			<p class="id">ID</p>
+			<p class="content">Content</p>
+		</div>
+		<br style="clear: both;" />
+	</div>
+
+	<div id="footer"></div>
+
+	<div id="debug"></div>
+
+	<div id="hiddenBlock" style="visibility: hidden; display: none;">
+		<div class="hotelDetails">
+			<p class="name" />
+			<p class="type" />
+			<p class="hasPool" />
+			<p class="hasWaterslides" />
+			<p class="hasTennisCourt" />
+			<p class="roomCount" />
+			<p class="dubl" />
+			<p class="single" />
+			<p class="twin" />
+			<p class="tv" />
+			<p class="balcony" />
+			<p class="airConditioning" />
+		</div>
+	</div>
+
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="hotels.js"></script>
 	<script type="text/javascript">
-		
-	</script>
+        
+    </script>
 </body>
 </html>
