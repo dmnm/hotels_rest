@@ -30,27 +30,27 @@ public class Config {
     void init() {
         final Hotel oneStar = new Hotel();
         oneStar.name = "One Star";
-        oneStar.type = HotelType.SANATORIUM;
+        oneStar.type = HotelType.Sanitarium;
 
         final Hotel twoStars = new Hotel();
         twoStars.name = "Two Stars";
-        twoStars.type = HotelType.SANATORIUM;
+        twoStars.type = HotelType.Sanitarium;
         twoStars.hasPool = true;
         twoStars.hasTennisCourt = true;
 
         final Hotel threeStars = new Hotel();
         threeStars.name = "Three Stars";
-        threeStars.type = HotelType.SIMPLE;
+        threeStars.type = HotelType.Simple;
         threeStars.hasTennisCourt = true;
 
         final Hotel fourStars = new Hotel();
         fourStars.name = "Four Stars";
-        fourStars.type = HotelType.SIMPLE;
+        fourStars.type = HotelType.Simple;
         fourStars.hasPool = true;
 
         final Hotel fiveStars = new Hotel();
         fiveStars.name = "Five Stars";
-        fiveStars.type = HotelType.SIMPLE;
+        fiveStars.type = HotelType.Simple;
         fiveStars.hasPool = true;
         fiveStars.hasTennisCourt = true;
         fiveStars.hasWaterslides = true;
@@ -69,7 +69,7 @@ public class Config {
                 room.hotel = hotel;
                 hotel.rooms.add(room);
 
-                if (hotel.type == HotelType.SANATORIUM) {
+                if (hotel.type == HotelType.Sanitarium) {
                     room.hasAirConditioning = false;
                 }
 
@@ -107,11 +107,11 @@ public class Config {
         final int i = random.nextInt(15) % 3;
         switch (i) {
             case 0:
-                return RoomType.TWIN;
+                return RoomType.Twin;
             case 1:
-                return RoomType.SINGLE;
+                return RoomType.Single;
             default:
-                return RoomType.DOUBLE;
+                return RoomType.Double;
         }
     }
 }

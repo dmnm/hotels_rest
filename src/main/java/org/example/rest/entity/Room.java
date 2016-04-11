@@ -8,7 +8,7 @@ public class Room extends Entity {
     @JsonIgnore
     public Hotel hotel;
     public int roomNumber;
-    public RoomType type = RoomType.SINGLE;
+    public RoomType type = RoomType.Single;
     public RoomView view = RoomView.NONE;
     public boolean hasTV;
     public boolean hasBalcony;

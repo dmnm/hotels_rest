@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.example.rest.dao.HotelDao;
 import org.example.rest.dao.RoomDao;
 import org.example.rest.entity.Room;
 
@@ -13,8 +14,11 @@ public class RoomService {
     @Inject
     private RoomDao roomDao;
 
-    public List<Room> getAll() {
-        return roomDao.getAll();
+    @Inject
+    private HotelDao hotelDao;
+
+    public List<Room> findByHotelId(final Long hotelId) {
+        return hotelDao.findById(hotelId).rooms;
     }
 
     public Room findById(final Long id) {

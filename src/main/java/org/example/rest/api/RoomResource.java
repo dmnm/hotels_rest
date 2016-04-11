@@ -16,7 +16,7 @@ import org.example.rest.entity.Room;
 import org.example.rest.service.RoomService;
 
 @Named
-@Path("rooms")
+@Path("hotels/{hotelId}/rooms")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RoomResource {
@@ -25,14 +25,14 @@ public class RoomResource {
     private RoomService delegate;
 
     @GET
-    public List<Room> getAll() {
-        return delegate.getAll();
+    public List<Room> getAll(@PathParam("hotelId") final Long hotelId) {
+        return delegate.findByHotelId(hotelId);
     }
 
     @GET
-    @Path("{id}")
-    public Response findById(@PathParam("id") final Long id) {
-        return Response.ok().entity(delegate.findById(id)).build();
+    @Path("{roomId}")
+    public Response findById(@PathParam("hotelId") final Long hotelId, @PathParam("roomId") final Long roomId) {
+        return Response.ok().entity(delegate.findById(roomId)).build();
     }
 
 }

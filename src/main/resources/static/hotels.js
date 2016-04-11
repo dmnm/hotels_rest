@@ -1,74 +1,37 @@
-var debug = true;
-var rootUrl = "http://localhost:8080/api/";
-var hotels = rootUrl + "hotels/";
-var rooms = rootUrl + "rooms/";
-var search = rootUrl + "search/";
+var current = {
+    hotel : null,
+    room : null
+};
 
-$(document).ready(function() {
-    loadHotels(showHotels);
-});
+function showHotels(hotels) {
+    debug(hotels);
 
-if (!debug) {
-    $("#debug").remove();
-}
-
-$("#home").click(function() {
-    loadHotels(showHotels);
-});
-
-function loadHotels(callback) {
-    $.ajax({
-        url : hotels,
-        success : callback,
-        error : showErrors
+    cleanContent();
+    $.each(hotels, function(i, hotel) {
+        addContent('<p><a href="#" data-identity="' + hotel.id
+                + '" onclick="onHotelClicked($(this).attr(`data-identity`));">' + hotel.name + '</a></p>');
     });
 }
 
-function loadHotel(hotelId, callback) {
-    $.ajax({
-        url : hotels + hotelId,
-        success : callback,
-        error : showErrors
-    });
-}
+function showHotel(hotel) {
+    debug(hotel);
 
-function showHotels(data) {
-    if (debug) {
-        $("#debug").text(JSON.stringify(data));
-        window.data = data;
-    }
-
-    clean();
-
-    $.each(data, function(i, hotel) {
-        $('#content').append(
-                '<p><a href="#" data-identity="' + hotel.id
-                        + '" onclick="onHotelClicked($(this).attr(`data-identity`));">' + hotel.name + '</a></p>');
-    });
-}
-
-function showHotel(data) {
-    if (debug) {
-        $("#debug").text(JSON.stringify(data));
-    }
-
-    var details = $(".hotelDetails").clone();
-    details.find(".name").text(data.name);
-    details.find(".type").text(data.type.toLowerCase());
-    details.find(".hasPool").text(data.hasPool);
-    details.find(".hasWaterslides").text(data.hasWaterslides);
-    details.find(".hasTennisCourt").text(data.hasTennisCourt);
-    details.find(".roomCount").text(data.rooms.length);
+    var details = asView(".hotelDetails");
+    details.find(".name").text(hotel.name);
+    details.find(".hasPool").text(hotel.hasPool);
+    details.find(".hasWaterslides").text(hotel.hasWaterslides);
+    details.find(".hasTennisCourt").text(hotel.hasTennisCourt);
+    details.find(".roomCount").text(hotel.rooms.length);
 
     var dubl, single, twin, balcony, tv, airConditioning;
-    $.each(data.rooms, function(i, room) {
-        dubl = dubl || room.type == "DOUBLE";
-        single = single || room.type == "SINGLE";
-        twin = twin || room.type == "TWIN";
+    $.each(hotel.rooms, function(i, room) {
+        dubl = dubl || room.type == "Double";
+        single = single || room.type == "Single";
+        twin = twin || room.type == "Twin";
         balcony = balcony || room.hasBalcony;
         tv = tv || room.hasTV;
         airConditioning = airConditioning || room.hasAirConditioning;
-    })
+    });
 
     details.find(".dubl").text(dubl);
     details.find(".single").text(single);
@@ -77,25 +40,61 @@ function showHotel(data) {
     details.find(".tv").text(tv);
     details.find(".airConditioning").text(airConditioning);
 
+    if (hotel.type == "Sanitarium") {
+        details.find(".name").append("<sup>*</sup>");
+    }
+
+    details.find("#availableRooms").click(function() {
+        getRooms(showRooms);
+    });
+
     showContent(details);
 }
 
+function showRooms(rooms) {
+    debug(rooms);
+
+    cleanContent();
+    $.each(rooms, function(i, room) {
+        var details = fillRoomDetails(room)
+        details.find(".reservationDetails").hide();
+        details.find(".reserve").click(function() {
+            current.room = room.id;
+            getRoom(showReservationForm);
+        });
+
+        addContent(details);
+    });
+}
+
+function showReservationForm(room) {
+    debug(room);
+
+    var details = fillRoomDetails(room)
+    details.find(".reserve").click(function() {
+        submitForm();
+    });
+    
+    showContent(details);
+}
+
+function submitForm() {
+    alert("Reserved!");
+    getHotels(showHotels);
+}
+
 function onHotelClicked(hotelId) {
-    if (debug) {
-        $("#debug").text(hotelId);
-    }
-    loadHotel(hotelId, showHotel);
+    debug(hotelId);
+    current.hotel = hotelId;
+    getHotel(showHotel);
 }
 
-function showErrors(message) {
-    alert("error: " + message);
-}
-
-function showContent(content) {
-    $("#content").empty();
-    $("#content").append(content);
-}
-
-function clean() {
-    $("#content").empty();
+function fillRoomDetails(room) {
+    var details = asView(".roomDetails");
+    details.find(".type").text(room.type);
+    details.find(".hasTV").text(room.hasTV);
+    details.find(".hasBalcony").text(room.hasBalcony);
+    details.find(".hasAirConditioning").text(room.hasAirConditioning);
+    details.find(".view").text(room.view);
+    return details;
 }

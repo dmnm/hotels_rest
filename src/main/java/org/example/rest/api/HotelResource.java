@@ -59,8 +59,7 @@ public class HotelResource {
     @POST
     // @RolesAllowed("admin")
     public Response create(final Hotel hotel) {
-        final Long id = delegate.add(hotel);
-        return Response.status(Status.CREATED).entity(id).build();
+        return Response.status(Status.CREATED).entity(hotel).build();
     }
 
     @PUT
@@ -69,7 +68,7 @@ public class HotelResource {
     public Response update(@PathParam("id") final Long id, final Hotel hotel) {
         hotel.setId(id);
         if (delegate.update(hotel) != null) {
-            return Response.ok().build();
+            return Response.ok().entity(hotel).build();
         } else {
             return Response.status(Status.NOT_FOUND).build();
         }

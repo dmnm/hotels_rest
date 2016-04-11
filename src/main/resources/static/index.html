@@ -1,19 +1,24 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Hotels Rest API</title>
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet"
+	href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+<link rel="stylesheet" type="text/css"
+	href="http://fonts.googleapis.com/css?family=Ubuntu">
+<link rel="stylesheet" type="text/css" href="style.css" />
+
 
 </head>
 
 <body>
-	<div id="header">
-		<div id="errors"></div>
-	</div>
+	<div id="header"></div>
 
 	<div id="main">
+		<div id="errors"></div>
 		<div id="nav">
-			<a id="home" href="#">Home</a>
+			<button id="home" href="#">Home</button>
+			<button class="action">Translate</button>
 		</div>
 
 		<div id="content">
@@ -29,27 +34,63 @@
 
 	<div id="hiddenBlock" style="visibility: hidden; display: none;">
 		<div class="hotelDetails">
-			<p class="name" />
-			<p class="type" />
-			<p class="hasPool" />
-			<p class="hasWaterslides" />
-			<p class="hasTennisCourt" />
-			<p class="roomCount" />
-			<p class="dubl" />
-			<p class="single" />
-			<p class="twin" />
-			<p class="tv" />
-			<p class="balcony" />
-			<p class="airConditioning" />
+			<p>
+			<h1>
+				<span class="name"></span>
+			</h1>
+			</p>
+			<p class="hasPool"></p>
+			<p class="hasWaterslides"></p>
+			<p class="hasTennisCourt"></p>
+			<p class="roomCount"></p>
+			<p class="dubl"></p>
+			<p class="single"></p>
+			<p class="twin"></p>
+			<p class="tv"></p>
+			<p class="balcony"></p>
+			<p class="airConditioning"></p>
+			<button id="availableRooms" class="share">Available rooms</button>
 		</div>
+
+
+		<div class="roomDetails">
+			<p class="type"></p>
+			<p class="view"></p>
+			<p class="hasTV"></p>
+			<p class="hasBalcony"></p>
+			<p class="hasAirConditioning"></p>
+
+			<div class="reservationDetails">
+				<form action="#">
+					<label for="guestName">Name</label>
+					<input id="guestName" type="text" />
+					<label for="guestPhone">Phone</label>
+					<input id="guestPhone" type="text" />
+					<label for="startDate">Start date</label>
+					<input id="startDate" type="text" />
+					<label for="endDate">End date</label>
+					<input id="endDate" type="text" />
+				</form>
+			</div>
+
+			<span class="reserveBtn">
+				<button class="share reserve">Reserve</button>
+			</span>
+		</div>
+
+
 	</div>
 
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="utils.js"></script>
 	<script src="hotels.js"></script>
+	<script src="ajaxRequests.js"></script>
 	<script type="text/javascript">
-        
+        $(document).ready(function() {
+            getHotels(showHotels);
+        });
     </script>
 </body>
 </html>

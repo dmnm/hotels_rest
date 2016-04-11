@@ -12,7 +12,7 @@ public class Hotel extends Entity {
     public String name;
     // @JsonIgnore
     public List<Room> rooms = new ArrayList<>();
-    public HotelType type = HotelType.SIMPLE;
+    public HotelType type = HotelType.Simple;
     public boolean hasPool;
     public boolean hasWaterslides;
     public boolean hasTennisCourt;
