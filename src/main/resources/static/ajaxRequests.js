@@ -3,6 +3,12 @@ var hotels = rootUrl + "/hotels/";
 var rooms = "/rooms/";
 var search = rootUrl + "/search/";
 
+$.ajaxSetup({
+    beforeSend : function(xhr) {
+        xhr.setRequestHeader("Authorization", "Basic YXBpQ2xpZW50OmFwaUNsaWVudA==");
+    }
+});
+
 function getHotels(callback) {
     $.ajax({
         url : hotels,

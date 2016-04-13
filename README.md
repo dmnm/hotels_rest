@@ -8,3 +8,6 @@ or (requires Java8 only)
 `java -jar target/hotels-rest-0.0.1-SNAPSHOT.jar`
 
 ## How to use
+
+## Known issues
+Is not possible to authorize 'admin' user and JavaScript application at one moment
