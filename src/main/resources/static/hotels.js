@@ -71,10 +71,12 @@ function showReservationForm(room) {
     debug(room);
 
     var details = fillRoomDetails(room)
+    details.find(".endDate").datepicker();
+    details.find(".startDate").datepicker();
     details.find(".reserve").click(function() {
         submitForm();
     });
-    
+
     showContent(details);
 }
 

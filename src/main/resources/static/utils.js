@@ -44,5 +44,13 @@ $("#errors").hide();
 
 // Buttons default actions:
 $("#home").click(function() {
-    getHotels(showHotels);
+    location.reload();
+});
+
+$("#admin").click(function() {
+    location.href= "admin.html";
+});
+
+$("#index").click(function() {
+    location.href= "index.html";
 });

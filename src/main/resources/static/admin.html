@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>Hotels Rest API</title>
+<title>Hotels Rest API (Admin Page)</title>
 
 <link rel="stylesheet"
 	href="https://ssl.gstatic.com/docs/script/css/add-ons1.css" />
@@ -20,8 +20,8 @@
 
 <body>
 	<div id="header">
-		<span id="admin" class="rightBtn">
-			<button class="create">Admin</button>
+		<span id="index" class="rightBtn">
+			<button class="action">Back</button>
 		</span>
 	</div>
 
@@ -29,7 +29,6 @@
 		<div id="errors"></div>
 		<div id="nav">
 			<button id="home" href="#">Home</button>
-			<button class="action">Translate</button>
 		</div>
 
 		<div id="content">
@@ -84,7 +83,7 @@
 				</form>
 			</div>
 
-			<span class="rightBtn">
+			<span class="reserveBtn">
 				<button class="share reserve">Reserve</button>
 			</span>
 		</div>
@@ -98,7 +97,7 @@
 	<script src="ajaxRequests.js"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
-            getHotels(showHotels);
+
         });
     </script>
 </body>
