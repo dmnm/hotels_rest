@@ -10,4 +10,4 @@ or (requires Java8 only)
 ## How to use
 
 ## Known issues
-Is not possible to authorize 'admin' user and JavaScript application at one moment
+Is not possible to authorize 'admin' user and JavaScript application at the same time in FF, in Chrome works well.
