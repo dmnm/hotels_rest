@@ -17,4 +17,4 @@ or (requires Java8 only)
 `localhost:8080/api/hotels/{hotelId}/rooms/{roomId}/reserve` - reserve selected room, POST method only  
 
 ## Known issues
-Is not possible to authorize 'admin' user and JavaScript application at one moment
+Is not possible to authorize 'admin' user and JavaScript application at the same time in FF, in Chrome works well.
