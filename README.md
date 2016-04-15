@@ -16,6 +16,7 @@ or (requires Java8 only)
 `localhost:8080/api/hotels/` - shows all available hotels, JSON format  
 `localhost:8080/api/hotels/{id}` - shows selected hotel  
 `localhost:8080/api/hotels/{id}/rooms/` - all available rooms in selected hotel  
+`localhost:8080/api/hotels/{id}/plans/` - get Arrival Plans<sup>tm</sup> for selected hotel  
 `localhost:8080/api/hotels/{hotelId}/rooms/{roomId}` - shows selected room info  
 `localhost:8080/api/hotels/{hotelId}/rooms/{roomId}/reserve` - reserve selected room, POST method only  
 `localhost:8080/api/search/` - search for available rooms, GET only  
