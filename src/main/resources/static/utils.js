@@ -1,6 +1,9 @@
 var debugMode = false;
 
-//debugMode = true;
+debugMode = true;
+
+var checked = "<span class='checked'></span>";
+var unchecked = "<span class='unchecked'></span>"
 
 function debug(data) {
     if (debugMode) {
@@ -28,6 +31,9 @@ function showContent(content) {
 }
 
 function cleanContent() {
+    $("#back").hide();
+    $("#errors").empty();
+    $("#errors").hide();
     $("#content").empty();
 }
 
@@ -42,15 +48,26 @@ if (!debugMode) {
 
 $("#errors").hide();
 
+$("#back").hide();
+
 // Buttons default actions:
 $("#home").click(function() {
     location.reload();
 });
 
+$("#back").click(function() {
+    $("#back").hide();
+    onBackClicked();
+});
+
+$("#search").click(function() {
+    showSearchForm();
+});
+
 $("#admin").click(function() {
-    location.href= "admin.html";
+    location.href = "admin.html";
 });
 
 $("#index").click(function() {
-    location.href= "index.html";
+    location.href = "index.html";
 });

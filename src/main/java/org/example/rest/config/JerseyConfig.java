@@ -10,8 +10,10 @@ import javax.ws.rs.ext.Provider;
 
 import org.example.rest.api.HotelResource;
 import org.example.rest.api.RoomResource;
+import org.example.rest.api.SearchResource;
 import org.example.rest.web.CorsFilter;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -23,8 +25,12 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class JerseyConfig extends ResourceConfig {
     @PostConstruct
     public void registerResources() {
+        property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
+        property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true);
+
         register(HotelResource.class);
         register(RoomResource.class);
+        register(SearchResource.class);
         register(JacksonContextResolver.class);
         register(RolesAllowedDynamicFeature.class);
         register(CorsFilter.class);

@@ -1,6 +1,6 @@
 package org.example.rest.config;
 
-import java.util.Random;
+/*import java.util.Random;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,9 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .httpBasic().realmName("Login: admin, Password: " + PASSWD)
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        /*http.antMatcher("/api/**").authorizeRequests().anyRequest().hasRole("admin").and()
-                .httpBasic().realmName("Login: admin, Password: " + PASSWD);*/
     }
 
     @Override
@@ -42,4 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         log.info(PASSWD);
         System.err.println(PASSWD);
     }
-}
+}*/
+
+public class SecurityConfig {}

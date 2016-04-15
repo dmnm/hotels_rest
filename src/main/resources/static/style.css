@@ -5,6 +5,10 @@ body {
 	margin-right: 20%
 }
 
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
 div {
 	border: 1px solid lightgray;
 	border-radius: 5px;
@@ -15,11 +19,19 @@ div {
 #nav {
 	float: left;
 	width: 20%;
+	border: none;
+	text-align: end;
+}
+
+#nav button {
+	margin-bottom: .5em
 }
 
 #content {
+	border: none;
 	display: inline-block;
 	width: 70%;
+	display: inline-block;
 }
 
 #debug {
@@ -28,6 +40,11 @@ div {
 	margin: 0.3em;
 	padding: 0.5em;
 	color: red;
+}
+
+.red {
+	color: red;
+	font-weight: bold;
 }
 
 .rightBtn {
@@ -41,4 +58,22 @@ div {
 
 .reservationDetails label:after {
 	content: ": ";
+}
+
+span .checked:after {
+	content: "\2714";
+	color: green;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+span .unchecked:after {
+	content: "\2716";
+	color: red;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.roomNumber:before {
+	content: "Room #";
 }

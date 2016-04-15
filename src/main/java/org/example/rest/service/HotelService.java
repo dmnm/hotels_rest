@@ -5,8 +5,10 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.example.rest.dao.ArrivalPlansDao;
 import org.example.rest.dao.HotelDao;
 import org.example.rest.dao.RoomDao;
+import org.example.rest.entity.ArrivalPlan;
 import org.example.rest.entity.Hotel;
 
 @Named
@@ -16,6 +18,13 @@ public class HotelService {
 
     @Inject
     private RoomDao roomDao;
+
+    @Inject
+    private ArrivalPlansDao arrivalPlansDao;
+
+    public ArrivalPlan getArrivalPlans(final Long hotelId) {
+        return arrivalPlansDao.findByHotel(hotelId);
+    }
 
     public List<Hotel> getAll() {
         return hotelDao.getAll();

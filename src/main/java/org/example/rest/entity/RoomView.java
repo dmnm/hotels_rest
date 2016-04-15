@@ -21,4 +21,13 @@ public enum RoomView {
         return value;
     }
 
+    public static RoomView byValue(final String value) {
+        for (final RoomView v : values()) {
+            if (v.value.equals(value)) {
+                return v;
+            }
+        }
+        return null;
+    }
+
 }

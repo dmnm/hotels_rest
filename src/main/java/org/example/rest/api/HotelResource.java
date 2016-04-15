@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.example.rest.entity.ArrivalPlan;
 import org.example.rest.entity.Hotel;
 import org.example.rest.service.HotelService;
 
@@ -57,18 +58,29 @@ public class HotelResource {
     }
 
     @POST
-    // @RolesAllowed("admin")
+    @RolesAllowed("admin")
     public Response create(final Hotel hotel) {
         return Response.status(Status.CREATED).entity(hotel).build();
     }
 
     @PUT
     @Path("{id}")
-    // @RolesAllowed("admin")
+    @RolesAllowed("admin")
     public Response update(@PathParam("id") final Long id, final Hotel hotel) {
         hotel.setId(id);
         if (delegate.update(hotel) != null) {
             return Response.ok().entity(hotel).build();
+        } else {
+            return Response.status(Status.NOT_FOUND).build();
+        }
+    }
+
+    @GET
+    @Path("{id}/plans")
+    public Response getArrivalPlans(@PathParam("id") final Long id) {
+        final ArrivalPlan plan = delegate.getArrivalPlans(id);
+        if (plan != null) {
+            return Response.ok().entity(plan).build();
         } else {
             return Response.status(Status.NOT_FOUND).build();
         }

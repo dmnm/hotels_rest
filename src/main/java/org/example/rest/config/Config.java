@@ -1,13 +1,18 @@
 package org.example.rest.config;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 import java.util.stream.IntStream;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.example.rest.dao.ArrivalPlansDao;
 import org.example.rest.dao.HotelDao;
 import org.example.rest.dao.RoomDao;
+import org.example.rest.entity.ArrivalPlan;
+import org.example.rest.entity.ArrivalPlan.StartEndDates;
 import org.example.rest.entity.Hotel;
 import org.example.rest.entity.HotelType;
 import org.example.rest.entity.Room;
@@ -25,6 +30,9 @@ public class Config {
     private RoomDao roomDao;
     @Inject
     private HotelDao hotelDao;
+
+    @Inject
+    private ArrivalPlansDao arrivalPlansDao;
 
     @PostConstruct
     void init() {
@@ -76,6 +84,27 @@ public class Config {
                 log.info("\r\n" + room);
             });
         });
+
+        addArrivalPlans(oneStar);
+        addArrivalPlans(twoStars);
+    }
+
+    private void addArrivalPlans(final Hotel hotel) {
+        final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            final Date june01 = format.parse("01/06/2016");
+            final Date june21 = format.parse("21/06/2016");
+            final Date july01 = format.parse("01/07/2016");
+            final Date july21 = format.parse("21/07/2016");
+            final Date august01 = format.parse("01/08/2016");
+            final Date august21 = format.parse("21/08/2016");
+
+            final ArrivalPlan plan = new ArrivalPlan(hotel, new StartEndDates(june01, june21),
+                    new StartEndDates(july01, july21), new StartEndDates(august01, august21));
+
+            arrivalPlansDao.save(plan);
+        } catch (final Exception ignore) {}
+
     }
 
     private Room createRoom() {
