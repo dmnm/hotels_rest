@@ -21,8 +21,18 @@ or (requires Java8 only)
 `localhost:8080/api/hotels/{hotelId}/rooms/{roomId}/reserve` - reserve selected room, POST method only  
 `localhost:8080/api/search/` - search for available rooms, GET only  
 
-## TODO
+#### Admin part (needs admin privileges)
+`localhost:8080/api/hotels/` - add a brand new hotel, POST method  
+`localhost:8080/api/hotels/{id}` - update selected hotel, PUT method  
+`localhost:8080/api/hotels/{id}` - delete selected hotel, DELETE method  
+`localhost:8080/api/hotels/{id}/rooms/` - add a brand new room to selected hotel, POST method  
+`localhost:8080/api/hotels/{hotelId}/rooms/{roomId}` - update selected room, PUT method  
+`localhost:8080/api/hotels/{hotelId}/rooms/{roomId}` - delete selected room, DELETE method  
 
+## TODO
+- Add pagination especialy for Search page results  
+- Search page: handle 'Doesn't matter' value for bollean values (checkboxes)  
+- Improve navigation between pages  
 
 ## Known issues
 Is not possible to authorize 'admin' user and JavaScript application at the same time in FF, in Chrome works well.
