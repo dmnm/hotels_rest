@@ -1,16 +1,16 @@
 package org.example.rest.dao;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.example.rest.common.HasId;
 
 public abstract class GenericDao<T extends HasId> {
     private final Random random = new Random();
-    protected final Map<Long, T> repo = new ConcurrentHashMap<>();
+    protected final Map<Long, T> repo = new /*ConcurrentHashMap*/ LinkedHashMap<>();
 
     public boolean exist(final Long id) {
         return repo.containsKey(id);

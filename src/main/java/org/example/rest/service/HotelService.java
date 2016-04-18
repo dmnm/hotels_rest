@@ -38,17 +38,20 @@ public class HotelService {
         return hotelDao.findById(id);
     }
 
-    public Long add(final Hotel hotel) {
+    public Hotel add(final Hotel hotel) {
         hotel.setId(null);
-        return save(hotel).getId();
+        return save(hotel);
     }
 
-    public Long update(final Hotel hotel) {
-        if (delete(hotel.getId())) {
-            return save(hotel).getId();
-        } else {
-            return null;
-        }
+    public Hotel update(final Hotel hotel) {
+        final Hotel prev = findById(hotel.getId());
+        prev.name = hotel.name;
+        prev.type = hotel.type;
+        prev.hasPool = hotel.hasPool;
+        prev.hasTennisCourt = hotel.hasTennisCourt;
+        prev.hasWaterslides = hotel.hasWaterslides;
+
+        return save(prev);
     }
 
     public boolean delete(final Long id) {

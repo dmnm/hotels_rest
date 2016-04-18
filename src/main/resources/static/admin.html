@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>Hotels Rest API (Admin Page)</title>
+<title>Hotels Rest API (Admin page)</title>
 
 <link rel="stylesheet"
 	href="https://ssl.gstatic.com/docs/script/css/add-ons1.css" />
@@ -20,8 +20,8 @@
 
 <body>
 	<div id="header">
-		<span id="index" class="rightBtn">
-			<button class="action">Back</button>
+		<span class="rightBtn">
+			<button id="index" class="action">Back</button>
 		</span>
 	</div>
 
@@ -42,49 +42,229 @@
 	<div id="debug"></div>
 
 	<div id="hiddenBlock" style="visibility: hidden; display: none;">
+		<div class="hotelsView">
+			<h1>Available hotels</h1>
+			<ul class="hotelList">
+			</ul>
+			<span class="rightBtn">
+				<button id="addHotelBtn" class="create">Add hotel</button>
+			</span>
+		</div>
+
+
+		<div class="allRooms">
+			<span class="rightBtn">
+				<button id="addRoomBtn" class="create">Add room</button>
+			</span>
+		</div>
+
+		<div class="addRoomForm">
+			<h3>Add Room</h3>
+			<div>
+				<form action="#">
+					<p>
+						<label>Room #</label><input class="roomNumber" type="text"></input>
+					</p>
+					<p>
+						<label>Room type: </label> <select class="type">
+							<option>Single</option>
+							<option>Double</option>
+							<option>Twin</option>
+						</select>
+					</p>
+					<p>
+						<label>Room with view: </label> <select class="view">
+							<option>View on a trash heap</option>
+							<option>Sea view</option>
+							<option>Pool view</option>
+						</select>
+					</p>
+					<p>
+						<label>Has TV: </label><input class="hasTV" type="checkbox"></input>
+					</p>
+					<p>
+						<label>Has balcony: </label><input class="hasBalcony"
+							type="checkbox"></input>
+					</p>
+					<p>
+						<label>Has air conditioner: </label><input
+							class="hasAirConditioning" type="checkbox"></input>
+					</p>
+				</form>
+				<span class="rightBtn">
+					<button id="saveRoomBtn" class="create">Save</button>
+				</span>
+			</div>
+		</div>
+
+
+		<div class="addHotelForm">
+			<h3>Add hotel</h3>
+			<div>
+				<form action="#">
+					<input class="hiddenHotelId" type="hidden"></input>
+					<p>
+						<label>Hotel name: </label><input class="name" type="text"></input>
+					</p>
+					<p>
+						<label>Hotel type: </label> <select class="type">
+							<option>Simple</option>
+							<option>Sanitarium</option>
+						</select>
+					</p>
+					<p>
+						<label>Has waterpool: </label><input class="hasPool"
+							type="checkbox"></input>
+					</p>
+					<p>
+						<label>Has waterslides: </label><input class="hasWaterslides"
+							type="checkbox"></input>
+					</p>
+					<p>
+						<label>Has tennis court: </label><input class="hasTennisCourt"
+							type="checkbox"></input>
+					</p>
+				</form>
+				<span class="rightBtn">
+					<button id="saveHotelBtn" class="create">Save</button>
+				</span>
+			</div>
+		</div>
+
+
+
 		<div class="hotelDetails">
 			<p>
 				<h1>
 					<span class="name"></span>
 				</h1>
 			</p>
-			<p class="hasPool"></p>
-			<p class="hasWaterslides"></p>
-			<p class="hasTennisCourt"></p>
-			<p class="roomCount"></p>
-			<p class="dubl"></p>
-			<p class="single"></p>
-			<p class="twin"></p>
-			<!-- <span>&#x1f4fa;</span> -->
-			<p class="tv"></p>
-			<p class="balcony"></p>
-			<p class="airConditioning"></p>
+			<p>
+				<span>Waterpool </span><span class="hasPool"></span>
+			</p>
+			<p>
+				<span>Waterslides </span><span class="hasWaterslides"></span>
+			</p>
+			<p>
+				<span>Tennis court </span><span class="hasTennisCourt"></span>
+			</p>
+			<p>
+				<span>Available rooms: </span><span class="roomCount"></span>
+			</p>
+			<p>
+				<span>Has 'Double' rooms </span><span class="dubl"></span>
+			</p>
+			<p>
+				<span>Has 'Single' rooms </span><span class="single"></span>
+			</p>
+			<p>
+				<span>Has 'Twin' rooms </span><span class="twin"></span>
+			</p>
+			<p>
+				<span>Rooms with TV </span><span class="tv"></span>
+			</p>
+			<p>
+				<span>Rooms with a balcony </span><span class="balcony"></span>
+			</p>
+			<p>
+				<span>Rooms with an air conditioner </span><span
+					class="airConditioning"></span>
+			</p>
 			<button id="availableRooms" class="share">Available rooms</button>
+			<button id="editHotelBtn" class="action">Edit</button>
+			<button id="deleteHotelBtn" class="create deleteHotelBtn">Delete</button>
+
+			<div class="arrivalPlans">
+				<p>
+					<h3>Arrival Plans&trade;</h3>
+				</p>
+			</div>
 		</div>
 
 
 		<div class="roomDetails">
-			<p class="type"></p>
-			<p class="view"></p>
-			<p class="hasTV"></p>
-			<p class="hasBalcony"></p>
-			<p class="hasAirConditioning"></p>
+			<p>
+				<h3>
+					<span class="roomNumber"></span>
+				</h3>
+			</p>
+			<p>
+				<span>Type: </span><span class="type"></span>
+			</p>
+			<p>
+				<span>View: </span><span class="view"></span>
+			</p>
+			<p>
+				<span>TV </span><span class="hasTV"></span>
+			</p>
+			<p>
+				<span>Balcony </span><span class="hasBalcony"></span>
+			</p>
+			<p>
+				<span>Air Conditioner </span><span class="hasAirConditioning"></span>
+			</p>
 
-			<div class="reservationDetails">
+			<span class="rightBtn">
+				<button class="action editRoomBtn">Edit</button>
+				<button class="create deleteRoomBtn">Delete</button>
+			</span>
+		</div>
+
+
+
+
+
+		<div class="searchForm">
+			<p>
+				<h1>
+					<span>Search:</span>
+				</h1>
+			</p>
+			<div>
 				<form action="#">
-					<label for="guestName">Name</label>
-					<input class="guestName" type="text" />
-					<label for="guestPhone">Phone</label>
-					<input class="guestPhone" type="text" />
-					<label for="startDate">Start date</label>
-					<input class="startDate" type="text" />
-					<label for="endDate">End date</label>
-					<input class="endDate" type="date" />
+					<p>
+						<label>Type of room: </label> <select class="type">
+							<option>Doesn't matter</option>
+							<option>Single</option>
+							<option>Double</option>
+							<option>Twin</option>
+						</select>
+					</p>
+					<p>
+						<label>With a view: </label> <select class="view">
+							<option>Doesn't matter</option>
+							<option>Sea view</option>
+							<option>Pool view</option>
+							<option>View on a trash heap</option>
+						</select>
+					</p>
+					<p>
+						<input class="hasBalcony" type="checkbox" /> <label>Balcony</label>
+					</p>
+					<p>
+						<input class="hasAirConditioning" type="checkbox" /> <label>Air
+							Conditioner</label>
+					</p>
+					<p>
+
+						<input class="hasTV" type="checkbox" /> <label>TV</label>
+					</p>
+					<p>
+						<input class="hasTennisCourt" type="checkbox" /> <label>Hotel
+							with a tennis court</label>
+					</p>
+					<p>
+						<input class="hasPool" type="checkbox" /> <label>Hotel
+							with a waterpool</label>
+					</p>
+					<p>
+						<input class="hasWaterslides" type="checkbox" /> <label>Hotel
+							with waterslides</label>
+					</p>
 				</form>
 			</div>
-
-			<span class="reserveBtn">
-				<button class="share reserve">Reserve</button>
+			<span class="rightBtn">
+				<button class="action doSearch">Search</button>
 			</span>
 		</div>
 
@@ -95,9 +275,10 @@
 	<script src="utils.js"></script>
 	<script src="hotels.js"></script>
 	<script src="ajaxRequests.js"></script>
+	<script src="admin.js"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
-
+            getHotels(showHotels);
         });
     </script>
 </body>

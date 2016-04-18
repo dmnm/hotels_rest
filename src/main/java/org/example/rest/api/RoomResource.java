@@ -2,12 +2,15 @@ package org.example.rest.api;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -47,6 +50,36 @@ public class RoomResource {
     public Response reserve(@Valid final Reservation data) {
         reservationService.reserve(data);
         return Response.status(Status.CREATED).entity(data).build();
+    }
+
+    @POST
+    @RolesAllowed("admin")
+    public Response create(@PathParam("hotelId") final Long hotelId, final Room room) {
+        room.setId(null);
+        return Response.status(Status.CREATED).entity(delegate.add(hotelId, room)).build();
+    }
+
+    @PUT
+    @Path("{roomId}")
+    @RolesAllowed("admin")
+    public Response update(@PathParam("roomId") final Long roomId, final Room room) {
+        room.setId(roomId);
+        if (delegate.update(room) != null) {
+            return Response.ok().entity(room).build();
+        } else {
+            return Response.status(Status.NOT_FOUND).build();
+        }
+    }
+
+    @DELETE
+    @Path("{roomId}")
+    @RolesAllowed("admin")
+    public Response delete(@PathParam("roomId") final Long roomId) {
+        if (delegate.delete(roomId)) {
+            return Response.ok().build();
+        } else {
+            return Response.status(Status.NOT_FOUND).build();
+        }
     }
 
 }

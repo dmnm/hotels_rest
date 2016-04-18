@@ -60,7 +60,7 @@ public class HotelResource {
     @POST
     @RolesAllowed("admin")
     public Response create(final Hotel hotel) {
-        return Response.status(Status.CREATED).entity(hotel).build();
+        return Response.status(Status.CREATED).entity(delegate.add(hotel)).build();
     }
 
     @PUT

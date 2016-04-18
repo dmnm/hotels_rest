@@ -6,13 +6,21 @@ var current = {
 function showHotels(hotels) {
     debug(hotels);
 
-    cleanContent();
-    addContent("<h1>Available hotels</h1>");
+    var view = asView(".hotelsView");
 
-    $.each(hotels, function(i, hotel) {
-        addContent('<p><a href="#" data-identity="' + hotel.id
-                + '" onclick="onHotelClicked($(this).attr(`data-identity`));">' + hotel.name + '</a></p>');
+    $.each(hotels,
+            function(i, hotel) {
+                view.find(".hotelList").append(
+                        '<li><p><a href="#" data-identity="' + hotel.id
+                                + '" onclick="onHotelClicked($(this).attr(`data-identity`));">' + hotel.name
+                                + '</a></p></li>');
+            });
+
+    view.find("#addHotelBtn").click(function() {
+        onAddHotelClicked();
     });
+
+    showContent(view);
 }
 
 function showHotel(hotel) {
@@ -45,7 +53,7 @@ function showHotel(hotel) {
     details.find(".dubl").append(dubl ? checked : unchecked);
     details.find(".single").append(single ? checked : unchecked);
     details.find(".twin").append(twin ? checked : unchecked);
-    details.find(".balcony").append(hotel.hasPool ? checked : unchecked);
+    details.find(".balcony").append(balcony ? checked : unchecked);
     details.find(".tv").append(balcony ? checked : unchecked);
     details.find(".airConditioning").append(airConditioning ? checked : unchecked);
 
@@ -62,13 +70,26 @@ function showHotel(hotel) {
         getRooms(showRooms);
     });
 
+    details.find("#deleteHotelBtn").click(function() {
+        onDeleteHotelclicked();
+    });
+
+    details.find("#editHotelBtn").click(function() {
+        onEditHotelclicked(hotel);
+    });
+
     showContent(details);
 }
 
 function showRooms(rooms) {
     debug(rooms);
 
-    cleanContent();
+    var view = asView(".allRooms");
+
+    view.find("#addRoomBtn").click(function() {
+        onAddRoomClicked();
+    });
+
     $.each(rooms, function(i, room) {
         var details = fillRoomDetails(room)
         details.find(".reservationDetails").hide();
@@ -77,8 +98,20 @@ function showRooms(rooms) {
             getRoom(showReservationForm);
         });
 
-        addContent(details);
+        details.find(".editRoomBtn").click(function() {
+            current.room = room.id;
+            onEditRoomClicked(room);
+        });
+
+        details.find(".deleteRoomBtn").click(function() {
+            current.room = room.id;
+            onDeleteRoomClicked();
+        });
+
+        view.append(details);
     });
+
+    showContent(view);
 }
 
 function showReservationForm(room) {

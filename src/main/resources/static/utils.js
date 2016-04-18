@@ -1,6 +1,6 @@
 var debugMode = false;
 
-debugMode = true;
+//debugMode = true;
 
 var checked = "<span class='checked'></span>";
 var unchecked = "<span class='unchecked'></span>"
@@ -70,4 +70,8 @@ $("#admin").click(function() {
 
 $("#index").click(function() {
     location.href = "index.html";
+});
+
+$("#addHotelBtn").click(function() {
+    onAddHotelClicked();
 });
