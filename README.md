@@ -35,4 +35,5 @@ or (requires Java8 only)
 - Improve navigation between pages  
 
 ## Known issues
-Is not possible to authorize 'admin' user and JavaScript application at the same time in FF, in Chrome works well.
+- Is not possible to authorize 'admin' user and JavaScript application at the same time in FF, in Chrome works well.  
+- Probably it should use other way for authentication, not the basic one
